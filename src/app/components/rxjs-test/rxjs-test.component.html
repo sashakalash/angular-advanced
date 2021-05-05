@@ -1,0 +1,10 @@
+<mat-slide-toggle (change)="switchRecord($event)" [checked]="isStarted$ | async"></mat-slide-toggle>
+<ng-container *ngIf="isStarted$ | async;else counterStartedTemp">
+	<mat-card>Счетчик запущен</mat-card>
+</ng-container>
+<ng-template #counterStartedTemp>
+	<mat-card>Счетчик остановлен</mat-card>
+</ng-template>
+<ng-container *ngIf="(timer$ | async) as timer">
+	<mat-card>Время с последнего запуска: {{(timer * 1000) | date:'mm:ss'}}</mat-card>
+</ng-container>
